@@ -1,0 +1,9 @@
+/* Centering text in the metrics boxes */
+div.css-ocqkz7:nth-child {
+  text-align: center;
+}
+
+/* Increase font size of labels */
+label.css-qrbaxs.effi0qh3{
+  font-size: 18px;
+}
