@@ -1,21 +1,24 @@
+# Web app
 import streamlit as st
 from annotated_text import annotated_text
+from millify import millify
+import plotly.express as px
+# OS and file management
 import os
 import pickle
-import pandas as pd
-from millify import millify
-from Bio.SeqUtils.ProtParam import ProteinAnalysis
-import plotly.express as px
-#import _pickle as cPickle
+from PIL import Image
 import zipfile
+# Data analysis
+import pandas as pd
+from Bio.SeqUtils.ProtParam import ProteinAnalysis
 
-# Setreamlit app
-
+# General options
+im = Image.open("favicon.ico")
 st.set_page_config(
-  page_title='AMPredST',
-  page_icon='💊',
-  layout='wide',
-  initial_sidebar_state='collapsed')
+    page_title="AMPredST",
+    page_icon=im,
+    layout="wide",
+)
 
 # Attach customized ccs style
 with open('style.css') as f:
