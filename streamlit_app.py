@@ -80,7 +80,7 @@ else:
 if st.session_state.peptide_input != '':
 
   # General properties of the peptide
-  st.subheader('General properties of the AMP')
+  st.subheader('General properties of the peptide')
   analysed_seq = ProteinAnalysis(peptide_seq)
   mol_weight = analysed_seq.molecular_weight()
   aromaticity = analysed_seq.aromaticity()
@@ -123,7 +123,7 @@ if st.session_state.peptide_input != '':
 
   df_amino_acids_percent =  pd.DataFrame.from_dict(amino_acids_percent, orient='index', columns=['frequencies']).T
 
-  st.subheader('Molecular descriptors of the AMP (Amimoacid frequencies)')
+  st.subheader('Molecular descriptors of the peptide (Amimoacid frequencies)')
 
   st.write(df_amino_acids_percent)
 
@@ -144,18 +144,12 @@ if st.session_state.peptide_input != '':
   model_file = 'ExtraTreesClassifier_maxdepth50_nestimators200.bin'
   with open(model_file, 'rb') as f_in:
       model = pickle.load(f_in)
-
-  #model_file = gzip.GzipFile(model_filename, 'rb')
-
-  #model = cPickle.load(model_file.open('ExtraTreesClassifier_maxdepth50_nestimators200.bin'))
-
-  #model_file.close()
   
   y_pred = model.predict_proba(df_amino_acids_percent)[0, 1]
   active = y_pred >= 0.5
 
   # Print results
-  st.subheader('Prediction of the AMP activity using the best ensemble ML model')
+  st.subheader('Prediction of the AMP activity using the machine learning model')
   if active == True:
     annotated_text(
     ("The input molecule is an active AMP", "", "#b6d7a8"))
@@ -164,7 +158,7 @@ if st.session_state.peptide_input != '':
     (f"{y_pred}","", "#b6d7a8"))
   else:
     annotated_text(
-    ("The input molecule is an inactive AMP", "", "#ea9999"))
+    ("The input molecule is not an active AMP", "", "#ea9999"))
     annotated_text(
     "Probability of antimicrobial activity: ",
     (f"{y_pred}","", "#ea9999"))
