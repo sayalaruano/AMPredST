@@ -1,9 +1,9 @@
 numpy
 pandas 
 scikit-learn 
-streamlit == "1.14.1"
+streamlit
 tqdm
-st-annotated-text == "3.0.0"
+st-annotated-text 
 biopython 
 millify 
 plotly 
