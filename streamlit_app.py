@@ -29,6 +29,9 @@ if 'peptide_input' not in st.session_state:
 
   
 st.title('AMPredST: Antimicrobial peptides prediction streamlit app')
+"""
+[![](https://img.shields.io/github/stars/sayalaruano/ML_AMPs_prediction_streamlitapp?style=social)](https://github.com/sayalaruano/ML_AMPs_prediction_streamlitapp) &nbsp; [![](https://img.shields.io/twitter/follow/sayalaruano?style=social)](https://twitter.com/sayalaruano)
+"""
 
 with st.expander('About this app'):
   st.write('''
@@ -43,8 +46,8 @@ with st.expander('About this app'):
   
   **Credits**
   - Developed by [Sebastián Ayala Ruano](https://sayalaruano.github.io/).
-  - I took as a reference the [notebook](https://github.com/dataprofessor/peptide-ml) and [video](https://www.youtube.com/watch?v=0NrFIGLwW0Q&feature=youtu.be) from [Dataprofessor](https://github.com/dataprofessor) about this topic. Also, the datasets, some ideas, and references to compare the performance of the best model were obtained from this [scientific article](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00251).
-  - Datasets: https://biocom-ampdiscover.cicese.mx/dataset
+  - This project was inspired by the [notebook](https://github.com/dataprofessor/peptide-ml) and [video](https://www.youtube.com/watch?v=0NrFIGLwW0Q&feature=youtu.be) from [Dataprofessor](https://github.com/dataprofessor) about this topic.
+  - The [datasets](https://biocom-ampdiscover.cicese.mx/dataset), some ideas, and references to compare the performance of the best model were obtained from this [scientific article](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00251).
     ''')
 
 # Input peptide
