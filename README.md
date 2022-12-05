@@ -16,6 +16,8 @@
 
 <a href="https://ampredst.streamlit.app/" title="AMPredST"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"></a><br>
 
+![ampredst-gif](./ampredst.gif)
+
 ## **Structure of the repository**
 
 The main files and directories of this repository are:
