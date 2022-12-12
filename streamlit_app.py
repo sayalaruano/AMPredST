@@ -24,10 +24,30 @@ st.set_page_config(
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+# Function to unzip the model
+@st.experimental_singleton
+def unzip_model(zip_file_name):
+    # opening Zip using 'with' keyword in read mode
+    with zipfile.ZipFile(zip_file_name, 'r') as file:
+        # printing all the information of archive file contents using 'printdir' method
+        print(file.printdir())
+        # extracting the files using 'extracall' method
+        print('Extracting all files...')
+        file.extractall()
+        print('Done!') # check your directory of zip file to see the extracted files
+
+# Function load the best ML model saved in a zip file
+@st.experimental_singleton 
+def load_model(model_file):
+  with open(model_file, 'rb') as f_in:
+      model = pickle.load(f_in)
+  return model 
+
+# Set the session state to store the peptide sequence
 if 'peptide_input' not in st.session_state:
   st.session_state.peptide_input = ''
 
-  
+# Add a title and info about the app
 st.title('AMPredST: Antimicrobial peptides prediction streamlit app')
 """
 [![](https://img.shields.io/github/stars/sayalaruano/ML_AMPs_prediction_streamlitapp?style=social)](https://github.com/sayalaruano/ML_AMPs_prediction_streamlitapp) &nbsp; [![](https://img.shields.io/twitter/follow/sayalaruano?style=social)](https://twitter.com/sayalaruano)
@@ -137,20 +157,14 @@ if st.session_state.peptide_input != '':
   # assigning filename to a variable
   zip_file_name = 'ExtraTreesClassifier_maxdepth50_nestimators200.zip'
 
-  # opening Zip using 'with' keyword in read mode
-  with zipfile.ZipFile(zip_file_name, 'r') as file:
-      # printing all the information of archive file contents using 'printdir' method
-      print(file.printdir())
+  # unzip the file with the defined function
+  unzip_model(zip_file_name)
 
-      # extracting the files using 'extracall' method
-      print('Extracting all files...')
-      file.extractall()
-      print('Done!') # check your directory of zip file to see the extracted files
-
+  # Load the model
   model_file = 'ExtraTreesClassifier_maxdepth50_nestimators200.bin'
-  with open(model_file, 'rb') as f_in:
-      model = pickle.load(f_in)
+  model = load_model(model_file)
   
+  # Predict the AMP activity
   y_pred = model.predict_proba(df_amino_acids_percent)[0, 1]
   active = y_pred >= 0.5
 
